@@ -1,0 +1,8 @@
+.element__picture{
+    display: block;
+    width: 282px;
+    height: 282px;
+    background-size: cover;
+    object-fit: contain;
+    overflow: hidden;
+}
