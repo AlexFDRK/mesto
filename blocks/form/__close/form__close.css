@@ -1,4 +1,6 @@
-.popup__close{
+.form__close{
+    border: none; 
+    outline: none;
     position: absolute;
     width: 32px;
     height: 32px;
@@ -13,7 +15,7 @@
 }
 
 @media screen and (max-width: 550px){
-    .popup__close{
+    .form__close{
         width: 20px;
         height: 20px;
         top: -36px;
@@ -21,7 +23,8 @@
     }
 }
 
-.popup__close:hover{
+.form__close:hover{
+    opacity: 60%;
     transform: rotate(360deg);
     transition: 0.5s;
 }

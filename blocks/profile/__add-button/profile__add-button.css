@@ -11,6 +11,12 @@
     background-position: center;
     object-fit: contain;
     box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.profile__add-button:hover{
+    opacity: 60%;
+    transition: 0.5s;
 }
 
 @media screen and (max-width: 710px){

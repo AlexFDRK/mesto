@@ -9,75 +9,76 @@
     <body class="page">
         <header class="header">
             <img class="header__logo" src="./images/Logo.svg" alt="лого"/>
-            <hr class="line"/>
 		</header>
         <main class="content">
             <section class="profile">
-                <div class="profile__left-part">
+                <div class="profile__content">
                     <img class="profile__avatar" src="./images/Custo.png" alt="аватар">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <a class="profile__description">Исследователь океана</a>
+                        <p class="profile__description">Исследователь океана</p>
                     </div>
-                    <button class="profile__edit-button fade"></button>
+                    <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
                 </div>
-                <button class="profile__add-button fade"></button>
+                <button type="button" class="profile__add-button" aria-label="Добавить"></button>
             </section>
             <section class="elements">
-                <div class="element">
+                <article class="element">
                     <img class="element__picture" src="./images/Karachaevsk.png" alt="Карачаевск">
                     <div class="element__group">
                         <h2 class="element__name">Карачаевск</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
-                <div class="element">
+                </article>
+                <article class="element">
                     <img class="element__picture" src="./images/Elbrus.png" alt="Эльбрус">
                     <div class="element__group">
                         <h2 class="element__name">Гора Эльбрус</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
-                <div class="element">
+                </article>
+                <article class="element">
                     <img class="element__picture" src="./images/Dombay.png" alt="Домбай">
                     <div class="element__group">
                         <h2 class="element__name">Домбай</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
-                <div class="element">
+                </article>
+                <article class="element">
                     <img class="element__picture" src="./images/Elbrus.png" alt="Эльбрус">
                     <div class="element__group">
                         <h2 class="element__name">Гора Эльбрус</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
-                <div class="element">
+                </article>
+                <article class="element">
                     <img class="element__picture" src="./images/Dombay.png" alt="Домбай">
                     <div class="element__group">
                         <h2 class="element__name">Домбай</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
-                <div class="element">
+                </article>
+                <article class="element">
                     <img class="element__picture" src="./images/Karachaevsk.png" alt="Карачаевск">
                     <div class="element__group">
                         <h2 class="element__name">Карачаево-Черкесск</h2>
-                        <span class="element__like fade"></span>
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </div>
+                </article>
             </section>
         </main>
         <footer class="footer">
             <p class="footer__stamp">© 2020 Mesto Russia</p>
         </footer>
-        <section class="overlay">
-            <form class="popup">
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <span class="popup__close fade"></span>
-                <input type="text" class="popup__name popup__field-style" placeholder="Жак-Ив Кусто">
-                <input type="text" class="popup__description popup__field-style" placeholder="Исследователь океана">
-                <button type = "submit" class="popup__save-button fade">Сохранить</button>
+        <section class="popup">
+            <form class="form" name="MyForm">
+                <h3 class="form__title">Редактировать профиль</h3>
+                <button class="form__close" aria-label="Выход"></button>
+                <div class="form__fields">
+                    <input type="text" class="form__field form__field-name" name="strName" placeholder="Жак-Ив Кусто">
+                    <input type="text" class="form__field form__field-description" name="strDescription" placeholder="Исследователь океана">
+                </div>
+                <button type ="submit" class="form__save-button">Сохранить</button>
             </form>
         </section>
         <script src="./scripts/main.js"></script>
