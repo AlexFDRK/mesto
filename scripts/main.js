@@ -1,28 +1,31 @@
 const btnEdit = document.querySelector('.profile__edit-button');
-const btnClose = document.querySelector('.form__close');
-const overlay = document.querySelector('.popup');
-const overlayActive = 'popup_active';
+const btnClose = document.querySelector('.overlay__close');
+const popup = document.querySelector('.popup');
+
+const popupActive = 'popup_active';
 const active = 'element__like_state_active';
 const disabled = 'element__like_state_disabled';
 
 let content = document.querySelector('.content');
 let btnLike = document.querySelector('.element__like');
 
+let formOverlay = document.querySelector('.overlay');
 let formMyForm = document.querySelector('.form');
-let strName = formMyForm.querySelector('.form__field-name');
-let strDescription = formMyForm.querySelector('.form__field-description');
-const btnSave = formMyForm.querySelector('.form__save-button');
+let strName = formMyForm.querySelector('.form__field_name');
+let strDescription = formMyForm.querySelector('.form__field_description');
+const btnSave = formOverlay.querySelector('.form__save-button');
+
 let aimName = document.querySelector('.profile__name');
 let aimDescription = document.querySelector('.profile__description');
 
 btnEdit.addEventListener('click', function(){
-    overlay.classList.add(overlayActive);
+    popup.classList.add(popupActive);
     strName.value = aimName.textContent;
     strDescription.value = aimDescription.textContent;
 });
 
 function popupClose(){
-    overlay.classList.remove(overlayActive); 
+    popup.classList.remove(popupActive); 
 }
 
 btnClose.addEventListener('click', function(){

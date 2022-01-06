@@ -2,6 +2,7 @@
     border: none;
     outline: none;
     background-image: url("../../../images/like-disabled.svg");
+    background-color: transparent;
     background-size: cover;
     margin-right: 5px;
     display: inline-block;
