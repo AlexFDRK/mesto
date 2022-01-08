@@ -1,19 +1,18 @@
 const btnEdit = document.querySelector('.profile__edit-button');
-const btnClose = document.querySelector('.overlay__close');
+const btnClose = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
-
 const popupActive = 'popup_active';
+
 const active = 'element__like_state_active';
 const disabled = 'element__like_state_disabled';
 
 let content = document.querySelector('.content');
 let btnLike = document.querySelector('.element__like');
 
-let formOverlay = document.querySelector('.overlay');
 let formMyForm = document.querySelector('.form');
-let strName = formMyForm.querySelector('.form__field_name');
-let strDescription = formMyForm.querySelector('.form__field_description');
-const btnSave = formOverlay.querySelector('.form__save-button');
+let strName = formMyForm.querySelector('.form__field_text_name');
+let strDescription = formMyForm.querySelector('.form__field_text_description');
+const btnSave = formMyForm.querySelector('.form__save-button');
 
 let aimName = document.querySelector('.profile__name');
 let aimDescription = document.querySelector('.profile__description');
@@ -54,6 +53,5 @@ function formSubmitHandler (event){
     }
     popupClose();
 }
-
 
 formMyForm.addEventListener('submit', formSubmitHandler); 

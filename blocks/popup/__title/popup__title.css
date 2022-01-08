@@ -1,4 +1,4 @@
-.overlay__title{
+.popup__title{
     margin: 34px 0px 0px 36px;
     font-size: 24px;
     font-weight: 900;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 550px){
-    .overlay__title{
+    .popup__title{
         width: 238px;
         margin: 25px auto 0px auto;
         font-size: 18px;

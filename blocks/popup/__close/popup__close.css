@@ -1,4 +1,4 @@
-.overlay__close{
+.popup__close{
     border: none;
     outline: none;
     position: absolute;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width: 550px){
-    .overlay__close{
+    .popup__close{
         width: 20px;
         height: 20px;
         top: -36px;
@@ -23,7 +23,7 @@
     }
 }
 
-.overlay__close:hover{
+.popup__close:hover{
     opacity: 60%;
     transform: rotate(360deg);
     transition: 0.5s;
