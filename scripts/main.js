@@ -37,11 +37,11 @@ document.addEventListener('keydown', function(event){
     }
 });
 
-content.addEventListener('click', function(event){
+/*content.addEventListener('click', function(event){
     if (event.target.classList.contains('element__like')){
         event.target.classList.toggle('element__like_state_active');
     }
-});
+});*/
 
 function formSubmitHandler (event){
     event.preventDefault();

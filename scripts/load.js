@@ -34,6 +34,9 @@ initialCards.forEach(function (element) {
     cardElement.querySelector('.element__picture').src = element.link;
     cardElement.querySelector('.element__picture').alt = element.name;
     cardElement.querySelector('.element__name').textContent = element.name;
+    cardElement.querySelector('.element__like').addEventListener('click', function (event) {
+      event.target.classList.toggle('element__like_state_active');
+   });
 
     sectionElements.append(cardElement);
   })
