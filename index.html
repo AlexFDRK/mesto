@@ -22,8 +22,8 @@
                 </div>
                 <button type="button" class="profile__add-button" aria-label="Добавить"></button>
             </section>
-            <section class="elements">
-                <article class="element">
+            <section class="elements">                
+                <!--article class="element">
                     <img class="element__picture" src="./images/Karachaevsk.png" alt="Карачаевск">
                     <div class="element__group">
                         <h2 class="element__name">Карачаевск</h2>
@@ -64,7 +64,7 @@
                         <h2 class="element__name">Карачаево-Черкесск</h2>
                         <button type="button" class="element__like" aria-label="Лайк"></button>
                     </div>
-                </article>
+                </article-->
             </section>
         </main>
         <footer class="footer">
@@ -83,6 +83,17 @@
                 </form>
             </div>
         </section>
+        <template id="element">
+            <article class="element">
+                <img class="element__picture" src="" alt="">
+                <button type="button" class="element__bin" aria-label="Удалить"></button>
+                <div class="element__group">
+                    <h2 class="element__name"></h2>
+                    <button type="button" class="element__like" aria-label="Лайк"></button>
+                </div>
+            </article>
+        </template>
+        <script src="./scripts/load.js"></script>
         <script src="./scripts/main.js"></script>
 	</body>
 </html>
