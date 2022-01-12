@@ -23,48 +23,7 @@
                 <button type="button" class="profile__add-button" aria-label="Добавить"></button>
             </section>
             <section class="elements">                
-                <!--article class="element">
-                    <img class="element__picture" src="./images/Karachaevsk.png" alt="Карачаевск">
-                    <div class="element__group">
-                        <h2 class="element__name">Карачаевск</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__picture" src="./images/Elbrus.png" alt="Эльбрус">
-                    <div class="element__group">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__picture" src="./images/Dombay.png" alt="Домбай">
-                    <div class="element__group">
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__picture" src="./images/Elbrus.png" alt="Эльбрус">
-                    <div class="element__group">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__picture" src="./images/Dombay.png" alt="Домбай">
-                    <div class="element__group">
-                        <h2 class="element__name">Домбай</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article>
-                <article class="element">
-                    <img class="element__picture" src="./images/Karachaevsk.png" alt="Карачаевск">
-                    <div class="element__group">
-                        <h2 class="element__name">Карачаево-Черкесск</h2>
-                        <button type="button" class="element__like" aria-label="Лайк"></button>
-                    </div>
-                </article-->
+
             </section>
         </main>
         <footer class="footer">
@@ -74,12 +33,19 @@
             <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="form" name="MyForm">
+                <form class="form my-form" name="MyForm">
                     <div class="form__fields">
                         <input type="text" class="form__field form__field_text_name" name="strName" placeholder="имя">
                         <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="описание">
                     </div>
-                    <button type="submit" class="form__save-button">Сохранить</button>
+                    <button type="submit" class="form__button form__save_frm_button">Сохранить</button>
+                </form>
+                <form class="form add-form" name="addForm">
+                    <div class="form__fields">
+                        <input type="text" class="form__field form__field_text_name" name="strName" placeholder="Название">
+                        <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="Ссылка на картинку">
+                    </div>
+                    <button type="submit" class="form__button form__create_frm_button">Создать</button>
                 </form>
             </div>
         </section>
@@ -93,7 +59,6 @@
                 </div>
             </article>
         </template>
-        <script src="./scripts/load.js"></script>
         <script src="./scripts/main.js"></script>
 	</body>
 </html>
