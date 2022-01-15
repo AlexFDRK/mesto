@@ -38,7 +38,7 @@
                         <input type="text" class="form__field form__field_text_name" name="strName" placeholder="имя">
                         <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="описание">
                     </div>
-                    <button type="submit" class="form__button form__save_frm_button">Сохранить</button>
+                    <button type="submit" class="form__button">Сохранить</button>
                 </form>
             </div>
             <div id="second-overlay" class="popup__overlay">
@@ -49,20 +49,20 @@
                         <input type="text" class="form__field form__field_text_name" name="strName" placeholder="Название">
                         <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="Ссылка на картинку">
                     </div>
-                    <button type="submit" class="form__button form__create_frm_button">Создать</button>
+                    <button type="submit" class="form__button">Создать</button>
                 </form>
             </div>
             <div id="third-overlay" class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
-                <form class="view" name="viewForm">
-                    <img class="view__picture" src="" alt="">
-                </form>
-                <p class="view__picture-name"></p>
+                <dev class="view" name="viewForm">
+                    <img class="view__picture">
+                    <p class="view__description"></p>
+                </dev>
             </div>
         </section>
         <template id="element">
             <article class="element">
-                <img class="element__picture" src="" alt="">
+                <img class="element__picture">
                 <button type="button" class="element__bin" aria-label="Удалить"></button>
                 <div class="element__group">
                     <h2 class="element__name"></h2>

@@ -49,15 +49,15 @@ const popupActive = 'active';
 const firstOverlay = document.querySelector('#first-overlay');
 const strName = firstOverlay.querySelector('.form__field_text_name');
 const strDescription = firstOverlay.querySelector('.form__field_text_description');
-const btnSave = firstOverlay.querySelector('.form__save_frm_button');
+const btnSave = firstOverlay.querySelector('.form__button');
 
 const secondOverlay = document.querySelector('#second-overlay');
 const strAddName = secondOverlay.querySelector('.form__field_text_name');
 const strAddDescription = secondOverlay.querySelector('.form__field_text_description');
-const btnCreate = secondOverlay.querySelector('.form__create_frm_button');
+const btnCreate = secondOverlay.querySelector('.form__button');
 
 const imgViewPicture = document.querySelector('.view__picture');
-const strViewName = document.querySelector('.view__picture-name');
+const strViewName = document.querySelector('.view__description');
 
 function setActiveElements(selectorName){
   activeOverlay = document.querySelector(selectorName);

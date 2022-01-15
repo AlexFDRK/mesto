@@ -41,6 +41,6 @@
 
 @import url(../blocks/view/view.css);
 @import url(../blocks/view/__picture/view__picture.css);
-@import url(../blocks/view/__picture-name/view__picture-name.css);
+@import url(../blocks/view/__description/view__description.css);
 
 @import url(../blocks/active/active.css);
