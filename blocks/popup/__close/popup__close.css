@@ -2,6 +2,8 @@
     border: none;
     outline: none;
     position: absolute;
+    top: -40px;
+    right: -40px;
     margin: 0 0 32px -32px;
     width: 32px;
     height: 32px;
@@ -10,8 +12,6 @@
     padding: 0;
     background-color: transparent;
     cursor: pointer;
-    top: -40px;
-    right: -40px;
 }
 
 @media screen and (max-width: 550px){

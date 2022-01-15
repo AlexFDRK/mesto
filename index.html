@@ -30,23 +30,34 @@
             <p class="footer__stamp">© 2020 Mesto Russia</p>
         </footer>
         <section class="popup">
-            <div class="popup__overlay">
+            <div id="first-overlay" class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="form my-form" name="MyForm">
+                <form class="form" name="MyForm">
+                    <h3 class="form__title">Редактировать профиль</h3>
                     <div class="form__fields">
                         <input type="text" class="form__field form__field_text_name" name="strName" placeholder="имя">
                         <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="описание">
                     </div>
                     <button type="submit" class="form__button form__save_frm_button">Сохранить</button>
                 </form>
-                <form class="form add-form" name="addForm">
+            </div>
+            <div id="second-overlay" class="popup__overlay">
+                <button type="button" class="popup__close" aria-label="Выход"></button>
+                <form class="form" name="addForm">
+                    <h3 class="form__title">Новое место</h3>
                     <div class="form__fields">
                         <input type="text" class="form__field form__field_text_name" name="strName" placeholder="Название">
                         <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="Ссылка на картинку">
                     </div>
                     <button type="submit" class="form__button form__create_frm_button">Создать</button>
                 </form>
+            </div>
+            <div id="third-overlay" class="popup__overlay">
+                <button type="button" class="popup__close" aria-label="Выход"></button>
+                <form class="view" name="viewForm">
+                    <img class="view__picture" src="" alt="">
+                </form>
+                <p class="view__picture-name"></p>
             </div>
         </section>
         <template id="element">
