@@ -29,8 +29,8 @@
         <footer class="footer">
             <p class="footer__stamp">© 2020 Mesto Russia</p>
         </footer>
-        <section class="popup">
-            <div id="first-overlay" class="popup__overlay">
+        <section class="popup profile-popup">
+            <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
                 <form class="form" name="MyForm">
                     <h3 class="form__title">Редактировать профиль</h3>
@@ -41,7 +41,9 @@
                     <button type="submit" class="form__button">Сохранить</button>
                 </form>
             </div>
-            <div id="second-overlay" class="popup__overlay">
+        </section>
+        <section class="popup add-popup">
+            <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
                 <form class="form" name="addForm">
                     <h3 class="form__title">Новое место</h3>
@@ -52,17 +54,19 @@
                     <button type="submit" class="form__button">Создать</button>
                 </form>
             </div>
-            <div id="third-overlay" class="popup__overlay">
+        </section>
+        <section class="popup view-popup">
+            <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
                 <dev class="view" name="viewForm">
-                    <img class="view__picture">
+                    <img class="view__picture" alt="Картинка">
                     <p class="view__description"></p>
                 </dev>
             </div>
         </section>
         <template id="element">
             <article class="element">
-                <img class="element__picture">
+                <img class="element__picture" alt="Картинка">
                 <button type="button" class="element__bin" aria-label="Удалить"></button>
                 <div class="element__group">
                     <h2 class="element__name"></h2>
