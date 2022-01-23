@@ -99,9 +99,7 @@ btnEdit.addEventListener('click', function(){
   profileDescription.value = aimDescription.textContent;
 });
 
-btnProfileClose.addEventListener('click', function(){
-  closePopup(popupProfile);
-});
+btnProfileClose.addEventListener('click', () => closePopup(popupProfile));
 
 function handleFormProfileSubmit (event){
   event.preventDefault();
@@ -116,13 +114,12 @@ function handleFormProfileSubmit (event){
 
 profileOverlay.addEventListener('submit', handleFormProfileSubmit);
 
-btnAdd.addEventListener('click', function(){
-  openPopup(popupAddCard);
+popupProfile.addEventListener('click', function(){
+  closePopup(popupProfile);
 });
 
-btnAddCardClose.addEventListener('click', function(){
-  closePopup(popupAddCard);
-});
+btnAdd.addEventListener('click', () => openPopup(popupAddCard));
+btnAddCardClose.addEventListener('click', () => closePopup(popupAddCard));
 
 function handleFormAddCardSubmit (event){
   event.preventDefault();
@@ -134,6 +131,7 @@ function handleFormAddCardSubmit (event){
 }
 
 addCardOverlay.addEventListener('submit', handleFormAddCardSubmit);
+popupAddCard.addEventListener('click', () => closePopup(popupAddCard));
 
 function activatePopupView(event){
   openPopup(popupView);
@@ -142,8 +140,22 @@ function activatePopupView(event){
   strViewName.textContent = event.target.alt;
 }
 
-btnViewClose.addEventListener('click', function(){
+btnViewClose.addEventListener('click', () => closePopup(popupView));
+popupView.addEventListener('click', function(){
   closePopup(popupView);
 });
 
-enableValidation();
+popupView.addEventListener('keypress', function(event){
+  if (event.key === 'Escape'){
+    closePopup(popupView);
+  }
+});
+
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.form__field',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_status_inactive',
+  inputErrorClass: 'form__field_type_error',
+  errorClass: 'form__input-error_active'
+});
