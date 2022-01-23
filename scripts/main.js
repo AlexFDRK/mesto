@@ -145,3 +145,5 @@ function activatePopupView(event){
 btnViewClose.addEventListener('click', function(){
   closePopup(popupView);
 });
+
+enableValidation();

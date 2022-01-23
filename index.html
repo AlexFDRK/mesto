@@ -32,11 +32,13 @@
         <section class="popup profile-popup">
             <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
-                <form class="form" name="MyForm">
+                <form class="form" name="MyForm" novalidate>
                     <h3 class="form__title">Редактировать профиль</h3>
                     <div class="form__fields">
-                        <input type="text" class="form__field form__field_text_name" name="strName" placeholder="имя">
-                        <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="описание">
+                        <input id = "name" type="text" class="form__field form__field_text_name" name="strName" placeholder="имя" required minlength="2" maxlength="40">
+                        <span class="name-input-error form__input-error">Необходимо заполнить данное поле</span>
+                        <input id = "description" type="text" class="form__field form__field_text_description" name="strDescription" placeholder="описание" required minlength="2" maxlength="200">
+                        <span class="description-input-error form__input-error">Необходимо заполнить данное поле</span>
                     </div>
                     <button type="submit" class="form__button">Сохранить</button>
                 </form>
@@ -45,11 +47,13 @@
         <section class="popup add-popup">
             <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
-                <form class="form" name="addForm">
+                <form class="form" name="addForm" novalidate>
                     <h3 class="form__title">Новое место</h3>
                     <div class="form__fields">
-                        <input type="text" class="form__field form__field_text_name" name="strName" placeholder="Название">
-                        <input type="text" class="form__field form__field_text_description" name="strDescription" placeholder="Ссылка на картинку">
+                        <input id = "name" type="text" class="form__field form__field_text_name" name="strName" placeholder="Название" required minlength="2" maxlength="30">
+                        <span class="name-input-error form__input-error">Необходимо заполнить данное поле</span>
+                        <input id = "description" type="url" class="form__field form__field_text_description" name="strDescription" placeholder="Ссылка на картинку" required>
+                        <span class="description-input-error form__input-error">Необходимо заполнить данное поле</span>
                     </div>
                     <button type="submit" class="form__button">Создать</button>
                 </form>
@@ -58,7 +62,7 @@
         <section class="popup view-popup">
             <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
-                <dev class="view" name="viewForm">
+                <dev class="view" name="viewForm" novalidate>
                     <img class="view__picture" alt="Картинка">
                     <p class="view__description"></p>
                 </dev>
@@ -74,6 +78,7 @@
                 </div>
             </article>
         </template>
+        <script src="./scripts/validate.js"></script>
         <script src="./scripts/main.js"></script>
 	</body>
 </html>
