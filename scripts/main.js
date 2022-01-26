@@ -89,6 +89,12 @@ function openPopup(popup) {
   popup.classList.add(popupOpened);
 }
 
+function closeOverlay(event) {
+  if (event.target === this){
+    closePopup(this);
+  }
+}
+
 function closePopup(popup) {
   popup.classList.remove(popupOpened);
 }
@@ -100,6 +106,7 @@ btnEdit.addEventListener('click', function(){
 });
 
 btnProfileClose.addEventListener('click', () => closePopup(popupProfile));
+popupProfile.addEventListener('click', closeOverlay);
 
 function handleFormProfileSubmit (event){
   event.preventDefault();
@@ -114,12 +121,9 @@ function handleFormProfileSubmit (event){
 
 profileOverlay.addEventListener('submit', handleFormProfileSubmit);
 
-popupProfile.addEventListener('click', function(){
-  closePopup(popupProfile);
-});
-
 btnAdd.addEventListener('click', () => openPopup(popupAddCard));
 btnAddCardClose.addEventListener('click', () => closePopup(popupAddCard));
+popupAddCard.addEventListener('click', closeOverlay);
 
 function handleFormAddCardSubmit (event){
   event.preventDefault();
@@ -131,7 +135,6 @@ function handleFormAddCardSubmit (event){
 }
 
 addCardOverlay.addEventListener('submit', handleFormAddCardSubmit);
-popupAddCard.addEventListener('click', () => closePopup(popupAddCard));
 
 function activatePopupView(event){
   openPopup(popupView);
@@ -141,12 +144,14 @@ function activatePopupView(event){
 }
 
 btnViewClose.addEventListener('click', () => closePopup(popupView));
-popupView.addEventListener('click', function(){
-  closePopup(popupView);
-});
+popupView.addEventListener('click', closeOverlay);
 
-popupView.addEventListener('keypress', function(event){
-  if (event.key === 'Escape'){
+document.addEventListener('keydown', function(event){
+  if (event.key === 'Escape' && popupProfile.classList.contains(popupOpened)){
+    closePopup(popupProfile); 
+  }else if (event.key === 'Escape' && popupAddCard.classList.contains(popupOpened)){
+    closePopup(popupAddCard);
+  }else if (event.key === 'Escape' && popupView.classList.contains(popupOpened)){
     closePopup(popupView);
   }
 });
