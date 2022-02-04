@@ -44,14 +44,14 @@ function addElement(name, link){
   cardImage.src = link;
   cardImage.alt = name;
   cardElement.querySelector('.element__name').textContent = name;
-  cardElement.querySelector('.element__like').addEventListener('mousedown', function (event) {
+  cardElement.querySelector('.element__like').addEventListener('click', function (event) {
     event.target.classList.toggle('element__like_state_active');
   });
-  cardElement.querySelector('.element__bin').addEventListener('mousedown', function (event) {
+  cardElement.querySelector('.element__bin').addEventListener('click', function (event) {
     const elementItem = event.target.closest('.element');
     elementItem.remove();
   });
-  cardImage.addEventListener('mousedown', function (event) {
+  cardImage.addEventListener('click', function (event) {
     activatePopupView(event);
   });
   return cardElement;
@@ -104,12 +104,6 @@ function openPopup(popup) {
   document.addEventListener('keydown', closeByEscape);
 }
 
-function closeOverlay(event) {
-  if (event.target === event.currentTarget){
-    closePopup(event.target);
-  }
-}
-
 function handleFormProfileSubmit (event){
   event.preventDefault();
   if (profileName.value !== ''){
@@ -123,11 +117,11 @@ function handleFormProfileSubmit (event){
 
 function handleFormAddCardSubmit (event){
   event.preventDefault();
-  const theFirstChild = sectionElements.firstChild;
   sectionElements.prepend(addElement(strAddCardName.value, strAddCardDescription.value));
   strAddCardName.value = '';
   strAddCardDescription.value = '';
   btnCardCreate.classList.add(validationData.inactiveButtonClass);
+  btnCardCreate.setAttribute('disabled', true);
   closePopup(popupAddCard);
 }
 
@@ -144,13 +138,13 @@ function activatePopupView(event){
     sectionElements.append(addElement(element.name, element.link));
   });
 
-  btnEdit.addEventListener('mousedown', function(){
+  btnEdit.addEventListener('click', function(){
     openPopup(popupProfile);
     profileName.value = aimName.textContent;
     profileDescription.value = aimDescription.textContent;
   });
 
-  btnAdd.addEventListener('mousedown', () => openPopup(popupAddCard));
+  btnAdd.addEventListener('click', () => openPopup(popupAddCard));
 
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {

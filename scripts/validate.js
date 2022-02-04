@@ -19,7 +19,7 @@ const hideInputError = (formElement, inputElement, validationData) => {
 
   inputElement.classList.remove(validationData.inputErrorClass);
   errorElement.classList.remove(validationData.errorClass);
-  errorElement.textContent = 'Accepted';
+  errorElement.textContent = '';
 }; 
 
 const setEventListeners = (formElement, validationData) => {
