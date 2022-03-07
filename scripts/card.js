@@ -1,14 +1,18 @@
 export class Card{
-  constructor(data, cardSelector, popupCloseButton) {
+  constructor(data, cardTemplate, popupScructure, openPopupFunction) {
     this._name = data.name;
     this._image = data.link;
-    this._cardSelector = cardSelector;
-    this._popupCloseButton = popupCloseButton;
+    this._cardTemplate = cardTemplate;
+    this._popupView = popupScructure.popupView;
+    this._popupCloseButton = popupScructure.popupCloseButton;
+    this._popupImage = popupScructure.popupImage;
+    this._strViewName = popupScructure.strViewName
+    this._openPopupFunction = openPopupFunction;
   }
 
 //public:
   generateCard() {
-    this._element = this._getTemplate();
+    this._element = this._cardTemplate.cloneNode(true);
     this._setEventListeners();
 
     this._element.querySelector('.element__name').textContent = this._name;
@@ -18,27 +22,11 @@ export class Card{
 
     return this._element;
   }
-  
-//private:
-  _getTemplate() {
-    const cardElement = document
-      .querySelector(this._cardSelector)
-      .content
-      .querySelector('.element')
-      .cloneNode(true);
-
-    return cardElement;
-  }
 
   _handleOpenPopup(){
-    popupImage.src = this._image;
-    strViewName.textContent = this._name;
-    popupView.classList.add('popup_status_opened');
-  }
-
-  _handleClosePopup(){
-    popupImage.src = '';
-    popupView.classList.remove('popup_status_opened');
+    this._popupImage.src = this._image;
+    this._strViewName.textContent = this._name;
+    this._openPopupFunction(this._popupView);
   }
 
   _setEventListeners(){
@@ -53,12 +41,6 @@ export class Card{
     this._element.querySelector('.element__bin').addEventListener('click', function (event) {
       const elementItem = event.target.closest('.element');
       elementItem.remove();
-    });
-    
-    this._popupCloseButton.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup__close')) {
-        this._handleClosePopup();
-      }
     });
   }
 }

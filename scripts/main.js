@@ -9,10 +9,15 @@ const btnAdd = document.querySelector('.profile__add-button');
 const aimName = document.querySelector('.profile__name');
 const aimDescription = document.querySelector('.profile__description');
 
-const popupView = document.querySelector('.view-popup');
-const popupImage = popupView.querySelector('.view__picture');
-const strViewName = popupView.querySelector('.view__description');
-const popupCloseButton = popupView.querySelector('.popup__close');
+const popupView = document.querySelector('.popup_type_picture');
+const cardTemplate = getTemplate('#element');
+
+const popupScructure = {
+  popupView: popupView,
+  popupImage: popupView.querySelector('.view__picture'),
+  strViewName: popupView.querySelector('.view__description'),
+  popupCloseButton: popupView.querySelector('.popup__close')
+};
 
 const initialCards = [
     {
@@ -43,15 +48,20 @@ const initialCards = [
 
 const popupOpened = 'popup_status_opened';
 
-const popupProfile = document.querySelector('.profile-popup');
+const popupProfile = document.querySelector('.popup_type_profile');
 const profileName = popupProfile.querySelector('.form__field_text_name');
 const profileDescription = popupProfile.querySelector('.form__field_text_description');
+const btnProfileClose = popupProfile.querySelector('.popup__close');
 const btnProfileSave = popupProfile.querySelector('.form__button');
 
-const popupAddCard = document.querySelector('.add-popup');
+const popupAddCard = document.querySelector('.popup_type_card-add');
 const strAddCardName = popupAddCard.querySelector('.form__field_text_name');
 const strAddCardDescription = popupAddCard.querySelector('.form__field_text_description');
+const btnCardClose = popupAddCard.querySelector('.popup__close');
 const btnCardCreate = popupAddCard.querySelector('.form__button');
+
+const popupPictureCard = document.querySelector('.popup_type_picture');
+const btnPictureClose = popupPictureCard.querySelector('.popup__close');
 
 function closeByEscape(evt){
   if (evt.key === 'Escape') {
@@ -67,18 +77,6 @@ function closePopup(popup) {
 
 function openPopup(popup) {
   popup.classList.add(popupOpened);
-  document.addEventListener('keydown', closeByEscape);
-  const openedPopup = document.querySelector('.popup_status_opened');
-  openedPopup.querySelector('.popup__close').addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close')) {
-      closePopup(openedPopup);
-    }
-  });
-  if (popup.classList.contains('profile-popup')){
-    popup.addEventListener('submit', handleFormProfileSubmit);
-  } else if (popup.classList.contains('add-popup')){
-    popup.addEventListener('submit', handleFormAddCardSubmit);
-  }
 }
 
 function handleFormProfileSubmit (event){
@@ -95,49 +93,83 @@ function handleFormProfileSubmit (event){
 function handleFormAddCardSubmit (event){
   event.preventDefault();
   
-  const card = new Card({name: strAddCardName.value, link: strAddCardDescription.value}, '#element', popupCloseButton);
+  const card = new Card({name: strAddCardName.value, link: strAddCardDescription.value}, cardTemplate, popupScructure, openPopup);
   const cardElement = card.generateCard();
   sectionElements.prepend(cardElement);
   strAddCardName.value = '';
   strAddCardDescription.value = '';
-  btnCardCreate.classList.add(validationData.inactiveButtonClass);
-  btnCardCreate.setAttribute('disabled', true);
+ 
   closePopup(popupAddCard);
 }
 
-btnEdit.addEventListener('click', function(){
-  openPopup(popupProfile);
-  profileName.value = aimName.textContent;
-  profileDescription.value = aimDescription.textContent;
-});
+function setCloseEventListener(evt){
+  if (evt.target.classList.contains('popup__close')) {
+    const openedPopup = document.querySelector('.popup_status_opened');
+    closePopup(openedPopup);
+  }
+}
 
-btnAdd.addEventListener('click', () => openPopup(popupAddCard));
+function getTemplate(cardSelector){
+  const cardElement = document
+      .querySelector(cardSelector)
+      .content
+      .querySelector('.element');
 
-//main()======================================================================
+    return cardElement;
+}
+
 {
+  btnEdit.addEventListener('click', function(){
+    openPopup(popupProfile);
+    profileName.value = aimName.textContent;
+    profileDescription.value = aimDescription.textContent;
+  });
+
+  btnAdd.addEventListener('click', () => openPopup(popupAddCard));
+
+  btnProfileClose.addEventListener('click', (evt) => {
+    setCloseEventListener(evt);
+  });
+
+  btnCardClose.addEventListener('click', (evt) => {
+    setCloseEventListener(evt);
+  });
+
+  btnPictureClose.addEventListener('click', (evt) => {
+    setCloseEventListener(evt);
+  });
+
+  popupProfile.addEventListener('submit', handleFormProfileSubmit);
+  popupAddCard.addEventListener('submit', handleFormAddCardSubmit);
+
   initialCards.forEach((element) => {
-    const card = new Card(element, '#element', popupCloseButton);
+    const card = new Card(element, cardTemplate, popupScructure, openPopup);
     const cardElement = card.generateCard();
 
     sectionElements.append(cardElement);
   });
 
-  const formList = Array.from(document.querySelectorAll('.form'));
+  const formProfileValidator = new Validator(
+    {
+      inputSelector: '.form__field',
+      buttonElement: btnProfileSave,
+      inactiveButtonClass: 'form__button_status_inactive',
+      inputErrorClass: 'form__field_type_error',
+      errorClass: 'form__input-error_active'
+    },
+    popupProfile
+  );
+  formProfileValidator.enableValidation();
 
-  const validationData = {
-    inputSelector: '.form__field',
-    submitButtonSelectorClass: '.form__button',
-    inactiveButtonClass: 'form__button_status_inactive',
-    inputErrorClass: 'form__field_type_error',
-    errorClass: 'form__input-error_active'
-  };
-
-  formList.forEach((form) => {
-    const formValidator = new Validator(
-      validationData,
-      form
-    );
-
-    formValidator.enableValidation();
-  });
+  const formAddCardValidator = new Validator(
+    {
+      inputSelector: '.form__field',
+      buttonElement: btnCardCreate,
+      inactiveButtonClass: 'form__button_status_inactive',
+      inputErrorClass: 'form__field_type_error',
+      errorClass: 'form__input-error_active'
+    },
+    popupAddCard
+  );
+  formAddCardValidator.enableValidation();
 }
