@@ -1,3 +1,4 @@
+import { initialCards, validationData } from './initialdata.js';
 import { Card } from './card.js';
 import { Validator } from './validate.js';
 
@@ -19,42 +20,17 @@ const popupScructure = {
   popupCloseButton: popupView.querySelector('.popup__close')
 };
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 const popupOpened = 'popup_status_opened';
 
 const popupProfile = document.querySelector('.popup_type_profile');
+const frmProfile = popupProfile.querySelector('.form');
 const profileName = popupProfile.querySelector('.form__field_text_name');
 const profileDescription = popupProfile.querySelector('.form__field_text_description');
 const btnProfileClose = popupProfile.querySelector('.popup__close');
 const btnProfileSave = popupProfile.querySelector('.form__button');
 
 const popupAddCard = document.querySelector('.popup_type_card-add');
+const frmAddCard = popupAddCard.querySelector('.form');
 const strAddCardName = popupAddCard.querySelector('.form__field_text_name');
 const strAddCardDescription = popupAddCard.querySelector('.form__field_text_description');
 const btnCardClose = popupAddCard.querySelector('.popup__close');
@@ -77,6 +53,7 @@ function closePopup(popup) {
 
 function openPopup(popup) {
   popup.classList.add(popupOpened);
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function handleFormProfileSubmit (event){
@@ -90,12 +67,15 @@ function handleFormProfileSubmit (event){
   closePopup(popupProfile);
 }
 
+function createCard(data){
+  const card = new Card(data, cardTemplate, popupScructure, openPopup);
+
+  return card.generateCard();
+}
+
 function handleFormAddCardSubmit (event){
   event.preventDefault();
-  
-  const card = new Card({name: strAddCardName.value, link: strAddCardDescription.value}, cardTemplate, popupScructure, openPopup);
-  const cardElement = card.generateCard();
-  sectionElements.prepend(cardElement);
+  sectionElements.prepend(createCard({name: strAddCardName.value, link: strAddCardDescription.value}));
   strAddCardName.value = '';
   strAddCardDescription.value = '';
  
@@ -143,33 +123,12 @@ function getTemplate(cardSelector){
   popupAddCard.addEventListener('submit', handleFormAddCardSubmit);
 
   initialCards.forEach((element) => {
-    const card = new Card(element, cardTemplate, popupScructure, openPopup);
-    const cardElement = card.generateCard();
-
-    sectionElements.append(cardElement);
+    sectionElements.append(createCard(element));
   });
 
-  const formProfileValidator = new Validator(
-    {
-      inputSelector: '.form__field',
-      buttonElement: btnProfileSave,
-      inactiveButtonClass: 'form__button_status_inactive',
-      inputErrorClass: 'form__field_type_error',
-      errorClass: 'form__input-error_active'
-    },
-    popupProfile
-  );
+  const formProfileValidator = new Validator(validationData, frmProfile);
   formProfileValidator.enableValidation();
 
-  const formAddCardValidator = new Validator(
-    {
-      inputSelector: '.form__field',
-      buttonElement: btnCardCreate,
-      inactiveButtonClass: 'form__button_status_inactive',
-      inputErrorClass: 'form__field_type_error',
-      errorClass: 'form__input-error_active'
-    },
-    popupAddCard
-  );
+  const formAddCardValidator = new Validator(validationData, frmAddCard);
   formAddCardValidator.enableValidation();
 }

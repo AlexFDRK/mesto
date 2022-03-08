@@ -38,9 +38,8 @@ export class Card{
       event.target.classList.toggle('element__like_state_active');
     });
 
-    this._element.querySelector('.element__bin').addEventListener('click', function (event) {
-      const elementItem = event.target.closest('.element');
-      elementItem.remove();
+    this._element.querySelector('.element__bin').addEventListener('click', () => {
+      this._element.remove();
     });
   }
 }
