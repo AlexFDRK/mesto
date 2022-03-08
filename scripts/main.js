@@ -53,6 +53,14 @@ function closePopup(popup) {
 
 function openPopup(popup) {
   popup.classList.add(popupOpened);
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains(popupOpened)) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  });
   document.addEventListener('keydown', closeByEscape);
 }
 
