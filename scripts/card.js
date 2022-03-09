@@ -1,8 +1,9 @@
 export class Card{
-  constructor(data, cardTemplate, popupScructure, openPopupFunction) {
+  constructor(data, templateStructure, popupScructure, openPopupFunction) {
     this._name = data.name;
     this._image = data.link;
-    this._cardTemplate = cardTemplate;
+    this._templateSelector = templateStructure.templateSelector;
+    this._templateClassName = templateStructure.templateClassName;
     this._popupView = popupScructure.popupView;
     this._popupCloseButton = popupScructure.popupCloseButton;
     this._popupImage = popupScructure.popupImage;
@@ -12,7 +13,7 @@ export class Card{
 
 //public:
   generateCard() {
-    this._element = this._cardTemplate.cloneNode(true);
+    this._element = this._getTemplate().cloneNode(true);
     this._setEventListeners();
 
     this._element.querySelector('.element__name').textContent = this._name;
@@ -21,6 +22,16 @@ export class Card{
     cardImage.alt = this._name;
 
     return this._element;
+  }
+
+//private
+  _getTemplate(){
+    const cardElement = document
+        .querySelector(this._templateSelector)
+        .content
+        .querySelector(this._templateClassName);
+
+      return cardElement;
   }
 
   _handleOpenPopup(){

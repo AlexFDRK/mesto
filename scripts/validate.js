@@ -17,6 +17,11 @@ export class Validator{
     this._setEventListeners();
   }
 
+  disableSubmitButton(){
+    this._buttonElement.disabled = true;
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+  }
+
 //private:
   _isValid = (inputElement) => {
     if (!inputElement.validity.valid) {
@@ -58,13 +63,16 @@ export class Validator{
     })
   }; 
 
+  _enableSubmitButton(){
+    this._buttonElement.disabled = false;
+    this._buttonElement.classList.remove(this._inactiveButtonClass);
+  }
+
   _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
-      this._buttonElement.disabled = true;
-      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this.disableSubmitButton();
     } else {
-      this._buttonElement.disabled = false;
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._enableSubmitButton();
     }
   }; 
 

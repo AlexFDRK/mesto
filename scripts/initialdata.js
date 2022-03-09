@@ -25,6 +25,11 @@ export const initialCards = [
     }
 ];
 
+export const templateStructure = {
+  templateSelector: '#element', 
+  templateClassName: '.element'
+};
+
 export const validationData = {
     inputSelector: '.form__field',
     buttonElement: '.form__button',
