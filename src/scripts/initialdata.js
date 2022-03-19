@@ -1,3 +1,7 @@
+import './../pages/index.css'
+
+const popupOpened = 'popup_status_opened';
+
 export const initialCards = [
     {
       name: 'Архыз',
@@ -37,3 +41,5 @@ export const validationData = {
     inputErrorClass: 'form__field_type_error',
     errorClass: 'form__input-error_active'
 };
+
+export default popupOpened;

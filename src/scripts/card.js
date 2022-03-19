@@ -1,13 +1,9 @@
-export class Card{
-  constructor(data, templateStructure, popupScructure, openPopupFunction) {
+export default class Card{
+  constructor(data, templateStructure, openPopupFunction) {
     this._name = data.name;
     this._image = data.link;
     this._templateSelector = templateStructure.templateSelector;
     this._templateClassName = templateStructure.templateClassName;
-    this._popupView = popupScructure.popupView;
-    this._popupCloseButton = popupScructure.popupCloseButton;
-    this._popupImage = popupScructure.popupImage;
-    this._strViewName = popupScructure.strViewName
     this._openPopupFunction = openPopupFunction;
   }
 
@@ -34,15 +30,9 @@ export class Card{
       return cardElement;
   }
 
-  _handleOpenPopup(){
-    this._popupImage.src = this._image;
-    this._strViewName.textContent = this._name;
-    this._openPopupFunction(this._popupView);
-  }
-
   _setEventListeners(){
     this._element.querySelector('.element__picture').addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._openPopupFunction(this);
     });
 
     this._element.querySelector('.element__like').addEventListener('click', function (event) {

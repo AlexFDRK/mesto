@@ -3,17 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./pages/index.css">
+	<!--link rel="stylesheet" href="./pages/index.css"-->
 	<title>Mesto</title>
 </head>
     <body class="page">
         <header class="header">
-            <img class="header__logo" src="./images/Logo.svg" alt="лого"/>
+            <img class="header__logo" src="<%=require('./images/Logo.svg')%>" alt="лого"/>
 		</header>
         <main class="content">
             <section class="profile">
                 <div class="profile__content">
-                    <img class="profile__avatar" src="./images/Custo.png" alt="аватар">
+                    <img class="profile__avatar" src="<%=require('./images/Custo.png')%>" alt="аватар">
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <p class="profile__description">Исследователь океана</p>
@@ -78,9 +78,10 @@
                 </div>
             </article>
         </template>
-        <script type="module" src="./scripts/initialdata.js"></script>
+        <!--script type="module" src="./scripts/initialdata.js"></script>
         <script type="module" src="./scripts/validate.js"></script>
         <script type="module" src="./scripts/card.js"></script>
         <script type="module" src="./scripts/main.js"></script>
+        <script type="module" src="./dist/bundle.js"></script-->
 	</body>
 </html>
