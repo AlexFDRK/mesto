@@ -22,7 +22,18 @@ export default class Validator{
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
+  renewValidator(){
+    this._inputList.forEach((inputElement) => {
+      this._validate(inputElement);
+    });
+  }
+
 //private:
+  _validate(inputElement){
+    this._isValid(inputElement);
+    this._toggleButtonState();
+  }
+
   _isValid = (inputElement) => {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -51,8 +62,7 @@ export default class Validator{
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._isValid(inputElement);
-        this._toggleButtonState();
+        this._validate(inputElement);
       });
     });
   }; 

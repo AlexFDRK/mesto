@@ -1,7 +1,5 @@
 import './../pages/index.css'
 
-const popupOpened = 'popup_status_opened';
-
 export const initialCards = [
     {
       name: 'Архыз',
@@ -28,18 +26,3 @@ export const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
-export const templateStructure = {
-  templateSelector: '#element', 
-  templateClassName: '.element'
-};
-
-export const validationData = {
-    inputSelector: '.form__field',
-    buttonElement: '.form__button',
-    inactiveButtonClass: 'form__button_status_inactive',
-    inputErrorClass: 'form__field_type_error',
-    errorClass: 'form__input-error_active'
-};
-
-export default popupOpened;

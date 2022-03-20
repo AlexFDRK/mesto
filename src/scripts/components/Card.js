@@ -1,7 +1,7 @@
 export default class Card{
-  constructor(data, templateStructure, openPopupFunction) {
-    this._name = data.name;
-    this._image = data.link;
+  constructor(name, link, templateStructure, openPopupFunction) {
+    this._name = name;
+    this._image = link;
     this._templateSelector = templateStructure.templateSelector;
     this._templateClassName = templateStructure.templateClassName;
     this._openPopupFunction = openPopupFunction;
@@ -32,7 +32,7 @@ export default class Card{
 
   _setEventListeners(){
     this._element.querySelector('.element__picture').addEventListener('click', () => {
-      this._openPopupFunction(this);
+      this._openPopupFunction(this._image, this._name);
     });
 
     this._element.querySelector('.element__like').addEventListener('click', function (event) {
