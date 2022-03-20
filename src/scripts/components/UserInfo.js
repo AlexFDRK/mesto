@@ -1,15 +1,15 @@
 export default class UserInfo{
-    constructor({strName, strDescription}){
-        this.strName = strName;
-        this.strDescription = strDescription;
+    constructor(aimName, aimDescription){
+        this._aimName = aimName;
+        this._aimDescription = aimDescription;
     }
 
     getUserInfo(){
-        return {strName: this._strName, strDescription: this._strDescription};
+        return {strName: this._aimName.textContent, strDescription: this._aimDescription.textContent};
     }
 
     setUserInfo({strName, strDescription}){
-        this.strName = strName;
-        this.strDescription = strDescription;
+        this._aimName.textContent = strName;
+        this._aimDescription.textContent = strDescription;
     }
 }

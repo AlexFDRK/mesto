@@ -2,7 +2,7 @@ import { initialCards } from './initialdata.js';
 import { validationData, templateStructure,
         sectionElements, btnEdit, btnAdd, aimName, aimDescription,
         frmProfile, frmAddCard } from './utils/constants.js';
-import Section from './components/section.js';
+import Section from './components/Section.js';
 import Card from './components/Card.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage.js';
@@ -19,10 +19,10 @@ formAddCardValidator.enableValidation();
   const popupProfile  = new PopupWithForm('.popup_type_profile', handleFormProfileSubmit);
   popupProfile.setEventListeners();
 
-  const userInfo = new UserInfo({strName: aimName.textContent, strDescription: aimDescription.textContent});
+  const userInfo = new UserInfo(aimName, aimDescription);
 
   btnEdit.addEventListener('click', function(){
-    popupProfile.setInputValues(userInfo);
+    popupProfile.setInputValues(userInfo.getUserInfo());
     formProfileValidator.renewValidator();
     popupProfile.open();
   });
@@ -43,10 +43,7 @@ formAddCardValidator.enableValidation();
   }
 
   function handleFormProfileSubmit(data){
-    aimName.textContent = data.strName;
-    aimDescription.textContent = data.strDescription;
-
-    userInfo.setUserInfo({strName: aimName.textContent, strDescription: aimDescription.textContent})
+    userInfo.setUserInfo({strName: data.strName, strDescription: data.strDescription});
   }
 
   function createCard(title, image){
