@@ -22,7 +22,7 @@ const formAddAvatarValidator = new Validator(validationData, frmAddAvatar);
 formAddAvatarValidator.enableValidation();
 
 {
-  const popupAvatar = new PopupWithForm('.popup__type_avatar', handleFormAvatarSubmit);
+  const popupAvatar = new PopupWithForm('.popup_type_avatar', handleFormAvatarSubmit);
   popupAvatar.setEventListeners();
 
   aimAvatarFrame.addEventListener('click', function(){

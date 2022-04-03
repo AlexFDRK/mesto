@@ -31,7 +31,7 @@ export const frmProfile = popupProfile.querySelector('.form');
 export const popupAddCard = document.querySelector('.popup_type_card-add');
 export const frmAddCard = popupAddCard.querySelector('.form');
 
-export const popupAvatarEdit = document.querySelector('.popup__type_avatar');
+export const popupAvatarEdit = document.querySelector('.popup_type_avatar');
 export const frmAddAvatar = popupAvatarEdit.querySelector('.form');
 
 const contentAndAuthorization = {
