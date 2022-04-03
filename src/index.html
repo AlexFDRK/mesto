@@ -13,7 +13,10 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__content">
-                    <img class="profile__avatar" src="<%=require('./images/Custo.png')%>" alt="аватар">
+                    <div class="profile__frame">
+                        <img class="profile__overlay" src="<%=require('./images/pen.svg')%>">
+                        <img class="profile__avatar" src="<%=require('./images/Custo.png')%>" alt="аватар">
+                    </div>
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <p class="profile__description">Исследователь океана</p>
@@ -59,6 +62,28 @@
                 </form>
             </div>
         </section>
+        <section class="popup popup_type_alert">
+            <div class="popup__overlay">
+                <button type="button" class="popup__close" aria-label="Выход"></button>
+                <form class="form" name="deleteForm" novalidate>
+                    <h3 class="form__title">Вы уверены?</h3>
+                    <button type="submit" class="form__button">Да</button>
+                </form>
+            </div>
+        </section>
+        <section class="popup popup_type_avatar_edit">
+            <div class="popup__overlay">
+                <button type="button" class="popup__close" aria-label="Выход"></button>
+                <form class="form" name="avatarEditForm" novalidate>
+                    <h3 class="form__title">Обновить аватар?</h3>
+                    <div class="form__fields">
+                        <input id="link-input" type="url" class="form__field form__field_text_avatar" name="strAvatar" placeholder="Ссылка на аватар" required>
+                        <span class="link-input-error form__input-error">Необходимо заполнить данное поле</span>
+                    </div>
+                    <button type="submit" class="form__button">Сохранить</button>
+                </form>
+            </div>
+        </section>
         <section class="popup popup_type_picture">
             <div class="popup__overlay">
                 <button type="button" class="popup__close" aria-label="Выход"></button>
@@ -74,7 +99,10 @@
                 <button type="button" class="element__bin" aria-label="Удалить"></button>
                 <div class="element__group">
                     <h2 class="element__name"></h2>
-                    <button type="button" class="element__like" aria-label="Лайк"></button>
+                    <div class="element__like-group">
+                        <button type="button" class="element__like" aria-label="Лайк"></button>
+                        <p class="element__quantity">0</p>
+                    </div>
                 </div>
             </article>
         </template>

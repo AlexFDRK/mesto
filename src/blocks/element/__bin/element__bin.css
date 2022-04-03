@@ -1,4 +1,5 @@
 .element__bin{
+    display: none;
     border: none;
     outline: none;
     background-image: url("../../../images/bin.svg");

@@ -1,7 +1,6 @@
 .profile__avatar{
-    display: block;
-    width: 120px;
+    width: auto;
     height: 120px;
-    background-size: cover;
-    border-radius: 50%; 
+    background-size: cover; 
+    margin: 0 auto;
 }
