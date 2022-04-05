@@ -1,13 +1,13 @@
 import { initialCards } from './initialdata.js';
 import { validationData, templateStructure, aimAvatarFrame,
-        sectionElements, btnEdit, btnAdd, aimName, aimDescription, aimAvatar, profileApi,
-        frmProfile, frmAddCard, userApi, cardApi, avatarApi, popupAvatarEdit, frmAddAvatar} from './utils/constants.js';
+        sectionElements, btnEdit, btnAdd, aimName, aimDescription, aimAvatar,
+        frmProfile, frmAddCard, Api, frmAddAvatar} from './utils/constants.js';
 import Section from './components/Section.js';
 import Card from './components/Card.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithAlert from './components/PopupWithAlert.js';
-import Validator from './components/Validate.js';
+import Validator from './components/FormValidator.js';
 import UserInfo from './components/UserInfo.js';
 
 let cardsList;
@@ -42,10 +42,10 @@ formAddAvatarValidator.enableValidation();
     popupProfile.open();
   });
 
-  userApi.get().then((data)=>{
+  Api.getUser().then((data)=>{
     userInfo.setUserInfo(data);
   }).then(() => {
-    cardApi.get().then((data)=>{
+    Api.getCard().then((data)=>{
       data.forEach((dt)=>{
         initialCards.push(dt);
       });
@@ -83,7 +83,7 @@ formAddAvatarValidator.enableValidation();
   }
 
   function handleFormProfileSubmit(data){
-    profileApi.patch({
+    Api.patchProfile({
       name: data.strName,
       about: data.strDescription
     }).then((data)=>{
@@ -105,7 +105,7 @@ formAddAvatarValidator.enableValidation();
   }
 
   function handleFormAddCardSubmit(data){
-    cardApi.post({
+    Api.postCard({
       name: data.strName,
       link: data.strDescription
     }).then((data)=>{
@@ -129,7 +129,7 @@ formAddAvatarValidator.enableValidation();
   }
 
   function handleDeleteCardSubmit(obj){
-    cardApi.delete(obj.getCardId()).then(()=>{
+    Api.deleteCard(obj.getCardId()).then(()=>{
       obj.deleteElement();
     }).catch((err)=>{
       alert(err);
@@ -137,7 +137,7 @@ formAddAvatarValidator.enableValidation();
   }
 
   function handleFormAvatarSubmit(data){
-    avatarApi.patch({
+    Api.patchAvatar({
       avatar:  data.strAvatar
     }).then((data)=>{
       popupAvatar.toggleButtonText();

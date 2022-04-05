@@ -34,28 +34,37 @@ export const frmAddCard = popupAddCard.querySelector('.form');
 export const popupAvatarEdit = document.querySelector('.popup_type_avatar');
 export const frmAddAvatar = popupAvatarEdit.querySelector('.form');
 
-const contentAndAuthorization = {
+const head = {
   'Accept': 'Application/json',
   'Content-Type': 'Application/json',
   'authorization': '1478eacc-254a-456a-9432-9f80e3ac7fe8'
 };
 
-export const userApi = new API(
-  'https://nomoreparties.co/v1/cohort-38/users/me', 
-  contentAndAuthorization
+export const Api = new API(
+  'nomoreparties.co/v1/cohort-38/',
+  {
+    'Accept': 'Application/json',
+    'Content-Type': 'Application/json',
+    'authorization': '1478eacc-254a-456a-9432-9f80e3ac7fe8'
+  }
 );
 
-export const profileApi = new API(
-  'https://mesto.nomoreparties.co/v1/cohort-38/users/me', 
-  contentAndAuthorization
-);
+// export const userApi = new API(
+//   'https://nomoreparties.co/v1/cohort-38/users/me', 
+//   contentAndAuthorization
+// );
 
-export const cardApi = new API(
-  'https://mesto.nomoreparties.co/v1/cohort-38/cards', 
-  contentAndAuthorization
-);
+// export const profileApi = new API(
+//   'https://mesto.nomoreparties.co/v1/cohort-38/users/me', 
+//   contentAndAuthorization
+// );
 
-export const avatarApi = new API(
-  'https://mesto.nomoreparties.co/v1/cohort-38/users/me/avatar', 
-  contentAndAuthorization
-);
+// export const cardApi = new API(
+//   'https://mesto.nomoreparties.co/v1/cohort-38/cards', 
+//   contentAndAuthorization
+// );
+
+// export const avatarApi = new API(
+//   'https://mesto.nomoreparties.co/v1/cohort-38/users/me/avatar', 
+//   contentAndAuthorization
+// );

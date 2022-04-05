@@ -1,4 +1,4 @@
-import { cardApi } from '../utils/constants.js';
+import { Api } from '../utils/constants.js';
 
 export default class Card{
   constructor(data, templateStructure, openPopupFunction, openAlertFunction, userId) {
@@ -69,19 +69,18 @@ export default class Card{
     var lambda = function(obj){
       return function (event){
         if(event.target.classList.contains('element__like_state_active')){
-          cardApi.dislike(obj.getCardId()).then((data)=>{
-            obj._setLikesQuantity(data.likes.length)
+          Api.dislike(obj.getCardId()).then((data)=>{
+            obj._toggleLike(data.likes.length);
           }).catch((err)=>{
             alert(err);
           });
         } else {
-          cardApi.like(obj.getCardId()).then((data)=>{
-            obj._setLikesQuantity(data.likes.length)
+          Api.like(obj.getCardId()).then((data)=>{
+            obj._toggleLike(data.likes.length);
           }).catch((err)=>{
             alert(err);
           });
         }
-        event.target.classList.toggle('element__like_state_active');
       }
     }
 
@@ -92,8 +91,9 @@ export default class Card{
     });
   }
 
-  _toggleLike(){
-    this._element.querySelector('.element__like').classList.add('element__like_state_active');
+  _toggleLike(quantity){
+    this._setLikesQuantity(quantity);
+    this._element.querySelector('.element__like').classList.toggle('element__like_state_active');
   }
 
   _activateBin(){

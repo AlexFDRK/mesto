@@ -17,9 +17,17 @@ export class API{
         });
     }
 
-    get(){
+    getUser(){
+        return this.get('https://' + this._url + 'users/me');
+    }
+
+    getCard(){
+        return this.get('https://mesto.' + this._url + 'cards');
+    }
+
+    get(url){
         const promis = fetch(
-            this._url, 
+            url, 
             {
                 method: 'GET',
                 headers: this._headers
@@ -29,9 +37,17 @@ export class API{
         return this._makeRequest(promis);
     }
 
-    patch(body){
+    patchAvatar(body){
+        return this.patch('https://mesto.' + this._url + 'users/me/avatar', body); 
+    }
+
+    patchProfile(body){
+        return this.patch('https://mesto.' + this._url + 'users/me', body); 
+    }
+
+    patch(url, body){
         const promis = fetch(
-            this._url, 
+            url, 
             {
                 method: 'PATCH',
                 headers: this._headers,
@@ -42,13 +58,10 @@ export class API{
         return this._makeRequest(promis);
     }
 
-    avatar(body){
-
-    }
-
-    post(body){
+    postCard(body){
+        const url = 'https://mesto.' + this._url + 'cards';
         const promis = fetch(
-            this._url, 
+            url, 
             {
                 method: 'POST',
                 headers: this._headers,
@@ -59,8 +72,8 @@ export class API{
         return this._makeRequest(promis);
     }
 
-    delete(id){
-        let url = this._url + '/' + id;
+    deleteCard(id){
+        const url = 'https://mesto.' + this._url + 'cards' + '/' + id;
         const promis = fetch(
             url, 
             {
@@ -73,7 +86,7 @@ export class API{
     }
 
     like(id){
-        let url = this._url + '/' + id + '/likes';
+        let url = 'https://mesto.' + this._url + '/cards/' + id + '/likes';
         const promis = fetch(
             url, 
             {
@@ -86,7 +99,7 @@ export class API{
     }
 
     dislike(id){
-        let url = this._url + '/' + id + '/likes';
+        let url = 'https://mesto.' + this._url + '/cards/' + id + '/likes';
         const promis = fetch(
             url, 
             {
