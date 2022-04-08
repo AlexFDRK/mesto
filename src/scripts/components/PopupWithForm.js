@@ -4,7 +4,10 @@ export default class PopupWithForm extends Popup{
     constructor(selector, submitFunction){
         super(selector);
         this._submitFunction = submitFunction;
-        this._submitText =  this._popup.querySelector('.form__button').innerHTML;
+        this._form = this._popup.querySelector('.form');
+        this._inputList = this._popup.querySelectorAll('.form__field')
+        this._submitButton =  this._popup.querySelector('.form__button');
+        this._submitText =  this._submitButton.innerHTML;
     }
 
     setEventListeners(){
@@ -16,27 +19,25 @@ export default class PopupWithForm extends Popup{
     }
 
     setInputValues(userInfo){
-        this._inputList = this._popup.querySelectorAll('.form__field');
         this._inputList.forEach(input => {
             input.value = userInfo[input.name];
         });
     }
 
     close(){
-        this._popup.querySelector('.form').reset();
+        this._form.reset();
         super.close();
     }
 
     toggleButtonText(){
-        if (this._popup.querySelector('.form__button').innerText === this._submitText){
-            this._popup.querySelector('.form__button').innerText = 'Сохранение...';
+        if (this._submitButton.innerText === this._submitText){
+            this._submitButton.innerText = 'Сохранение...';
         } else {
-            this._popup.querySelector('.form__button').innerText = this._submitText;
+            this._submitButton.innerText = this._submitText;
         }
     }
 
     _getInputValues(){
-        this._inputList = this._popup.querySelectorAll('.form__field');
         this._formValues = {};
 
         this._inputList.forEach(input => {

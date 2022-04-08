@@ -1,18 +1,17 @@
-import { API } from '../components/Api.js';
-
 export const popupOpened = 'popup_status_opened';
 
 export const templateStructure = {
     templateSelector: '#element', 
     templateClassName: '.element'
-  };
-  
+};
+
 export const validationData = {
-    inputSelector: '.form__field',
-    buttonElement: '.form__button',
-    inactiveButtonClass: 'form__button_status_inactive',
-    inputErrorClass: 'form__field_type_error',
-    errorClass: 'form__input-error_active'
+  formSelector: '.form',
+  inputSelector: '.form__field',
+  buttonElement: '.form__button',
+  inactiveButtonClass: 'form__button_status_inactive',
+  inputErrorClass: 'form__field_type_error',
+  errorClass: 'form__input-error_active'
 };
 
 export const sectionElements = document.querySelector('.elements');
@@ -39,32 +38,3 @@ const head = {
   'Content-Type': 'Application/json',
   'authorization': '1478eacc-254a-456a-9432-9f80e3ac7fe8'
 };
-
-export const Api = new API(
-  'nomoreparties.co/v1/cohort-38/',
-  {
-    'Accept': 'Application/json',
-    'Content-Type': 'Application/json',
-    'authorization': '1478eacc-254a-456a-9432-9f80e3ac7fe8'
-  }
-);
-
-// export const userApi = new API(
-//   'https://nomoreparties.co/v1/cohort-38/users/me', 
-//   contentAndAuthorization
-// );
-
-// export const profileApi = new API(
-//   'https://mesto.nomoreparties.co/v1/cohort-38/users/me', 
-//   contentAndAuthorization
-// );
-
-// export const cardApi = new API(
-//   'https://mesto.nomoreparties.co/v1/cohort-38/cards', 
-//   contentAndAuthorization
-// );
-
-// export const avatarApi = new API(
-//   'https://mesto.nomoreparties.co/v1/cohort-38/users/me/avatar', 
-//   contentAndAuthorization
-// );

@@ -1,4 +1,4 @@
-export default class Validator{
+export default class FormValidator{
   constructor(params, formElement){
     this._inputSelector = params.inputSelector;
     this._buttonElement = formElement.querySelector(params.buttonElement);
@@ -22,9 +22,11 @@ export default class Validator{
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
-  renewValidator(){
+  resetValidation(){
+    this._toggleButtonState();
+
     this._inputList.forEach((inputElement) => {
-      this._validate(inputElement);
+      this._hideInputError(inputElement);
     });
   }
 
@@ -40,22 +42,6 @@ export default class Validator{
     } else {
       this._hideInputError(inputElement);
     }
-  }; 
-
-  _showInputError = (inputElement, errorMessage) => {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-  
-    inputElement.classList.add(this._inputErrorClass);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._errorClass);
-  };
-  
-  _hideInputError = (inputElement) => {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-  
-    inputElement.classList.remove(this._inputErrorClass);
-    errorElement.classList.remove(this._errorClass);
-    errorElement.textContent = '';
   }; 
 
   _setEventListeners = () => {
@@ -86,7 +72,7 @@ export default class Validator{
     }
   }; 
 
-  _howInputError = (inputElement, errorMessage) => {
+  _showInputError = (inputElement, errorMessage) => {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
   
     inputElement.classList.add(this._inputErrorClass);

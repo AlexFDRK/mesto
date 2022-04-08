@@ -1,7 +1,5 @@
-import { Api } from '../utils/constants.js';
-
 export default class Card{
-  constructor(data, templateStructure, openPopupFunction, openAlertFunction, userId) {
+  constructor(data, templateStructure, openPopupFunction, openAlertFunction, userId, handleLike) {
     this._data = data;
     this._name = data.name;
     this._image = data.link;
@@ -10,21 +8,24 @@ export default class Card{
     this._openPopupFunction = openPopupFunction;
     this._openAlertFunction = openAlertFunction;
     this._userId = userId;
+    this._handleLike = handleLike;
   }
 
 //public:
   generateCard() {
     this._element = this._getTemplate().cloneNode(true);
+    this._cardImage = this._element.querySelector('.element__picture'); 
+    this._elementLike = this._element.querySelector('.element__like');
+    this._elementBin = this._element.querySelector('.element__bin');
+    this._elementQuantity = this._element.querySelector('.element__quantity')
     this._setEventListeners();
-
     this._element.querySelector('.element__name').textContent = this._name;
-    const cardImage = this._element.querySelector('.element__picture'); 
-    cardImage.src = this._image;
-    cardImage.alt = this._name;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._name;
     this._setLikesQuantity(this._data.likes.length);
     this._activateBin();
     if (this._checkIsItMyLike()){
-      this._element.querySelector('.element__like').classList.add('element__like_state_active');
+      this._elementLike.classList.add('element__like_state_active');
     }
     return this._element;
   }
@@ -49,7 +50,7 @@ export default class Card{
   }
 
   _setLikesQuantity(num){
-    this._element.querySelector('.element__quantity').textContent = num;
+    this._elementQuantity.textContent = num;
   }
 
   _getTemplate(){
@@ -62,43 +63,27 @@ export default class Card{
   }
 
   _setEventListeners(){
-    this._element.querySelector('.element__picture').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._openPopupFunction(this._image, this._name);
     });
 
-    var lambda = function(obj){
-      return function (event){
-        if(event.target.classList.contains('element__like_state_active')){
-          Api.dislike(obj.getCardId()).then((data)=>{
-            obj._toggleLike(data.likes.length);
-          }).catch((err)=>{
-            alert(err);
-          });
-        } else {
-          Api.like(obj.getCardId()).then((data)=>{
-            obj._toggleLike(data.likes.length);
-          }).catch((err)=>{
-            alert(err);
-          });
-        }
-      }
-    }
+    this._elementLike.addEventListener('click', ()=>{
+      this._handleLike(this);
+    });
 
-    this._element.querySelector('.element__like').addEventListener('click', lambda(this));
-
-    this._element.querySelector('.element__bin').addEventListener('click', () => {
+    this._elementBin.addEventListener('click', () => {
       this._openAlertFunction(this);
     });
   }
 
   _toggleLike(quantity){
     this._setLikesQuantity(quantity);
-    this._element.querySelector('.element__like').classList.toggle('element__like_state_active');
+    this._elementLike.classList.toggle('element__like_state_active');
   }
 
   _activateBin(){
     if (this._data.owner._id === this._userId) {
-      this._element.querySelector('.element__bin').classList.add('element__bin_state_visible');
+      this._elementBin.classList.add('element__bin_state_visible');
     }
   }
 }

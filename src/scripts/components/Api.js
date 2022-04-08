@@ -1,11 +1,11 @@
-export class API{
+export default class API{
     constructor(url, headers){
         this._url = url;
         this._headers = headers;
     }
 
-    _makeRequest(promis){
-        return promis.then((res) => {
+    _makeRequest(promise){
+        return promise.then((res) => {
             if (res.ok){
                 const answ = res.json();
                 return answ;
@@ -18,15 +18,15 @@ export class API{
     }
 
     getUser(){
-        return this.get('https://' + this._url + 'users/me');
+        return this.get(this._url + 'users/me');
     }
 
     getCard(){
-        return this.get('https://mesto.' + this._url + 'cards');
+        return this.get(this._url + 'cards');
     }
 
     get(url){
-        const promis = fetch(
+        const promise = fetch(
             url, 
             {
                 method: 'GET',
@@ -34,19 +34,19 @@ export class API{
             }
         );
 
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 
     patchAvatar(body){
-        return this.patch('https://mesto.' + this._url + 'users/me/avatar', body); 
+        return this.patch(this._url + 'users/me/avatar', body); 
     }
 
     patchProfile(body){
-        return this.patch('https://mesto.' + this._url + 'users/me', body); 
+        return this.patch(this._url + 'users/me', body); 
     }
 
     patch(url, body){
-        const promis = fetch(
+        const promise = fetch(
             url, 
             {
                 method: 'PATCH',
@@ -55,12 +55,12 @@ export class API{
             }
         );
         
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 
     postCard(body){
-        const url = 'https://mesto.' + this._url + 'cards';
-        const promis = fetch(
+        const url = this._url + 'cards';
+        const promise = fetch(
             url, 
             {
                 method: 'POST',
@@ -69,12 +69,12 @@ export class API{
             }
         );
 
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 
     deleteCard(id){
-        const url = 'https://mesto.' + this._url + 'cards' + '/' + id;
-        const promis = fetch(
+        const url = this._url + 'cards/' + id;
+        const promise = fetch(
             url, 
             {
                 method: 'DELETE',
@@ -82,12 +82,12 @@ export class API{
             }
         );
 
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 
     like(id){
-        let url = 'https://mesto.' + this._url + '/cards/' + id + '/likes';
-        const promis = fetch(
+        const url = this._url + 'cards/' + id + '/likes';
+        const promise = fetch(
             url, 
             {
                 method: 'PUT',
@@ -95,12 +95,12 @@ export class API{
             }
         );
 
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 
     dislike(id){
-        let url = 'https://mesto.' + this._url + '/cards/' + id + '/likes';
-        const promis = fetch(
+        const url = this._url + '/cards/' + id + '/likes';
+        const promise = fetch(
             url, 
             {
                 method: 'DELETE',
@@ -108,6 +108,6 @@ export class API{
             }
         );
 
-        return this._makeRequest(promis);
+        return this._makeRequest(promise);
     }
 }
