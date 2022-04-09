@@ -90,30 +90,31 @@ enableValidation(validationData);
   }
 
   function handleFormProfileSubmit(data){
+    popupProfile.toggleButtonText();
     api.patchProfile({
       name: data.strName,
       about: data.strDescription
     }).then((data)=>{
-      popupProfile.toggleButtonText();
       userInfo.setUserInfo(data);
     }).then(()=>{
-      popupProfile.toggleButtonText();
       popupProfile.close();
     }).catch((err)=>{
       alert(err);
+    }).finally(()=>{
+      popupProfile.toggleButtonText();
     });
   }
 
   function handleLike(card) {
-    if(this._elementLike.classList.contains('element__like_state_active')){
-      api.dislike(this.getCardId()).then((data)=>{
-        this._toggleLike(data.likes.length);
+    if(card.isLiked()){
+      api.dislike(card.getCardId()).then((data)=>{
+        card.toggleLike(data.likes.length);
       }).catch((err)=>{
         alert(err);
       });
     } else {
-      api.like(this.getCardId()).then((data)=>{
-        this._toggleLike(data.likes.length);
+      api.like(card.getCardId()).then((data)=>{
+        card.toggleLike(data.likes.length);
       }).catch((err)=>{
         alert(err);
       });
@@ -135,10 +136,11 @@ enableValidation(validationData);
     }).then((data)=>{
       const cardElement = createCard(data);
       cardsList.prepend(cardElement);
-      popupAddCard.toggleButtonText();
       popupAddCard.close();
     }).catch((err)=>{
       alert(err);
+    }).finally(()=>{
+      popupAddCard.toggleButtonText();
     });
   }
 

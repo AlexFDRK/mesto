@@ -76,10 +76,15 @@ export default class Card{
     });
   }
 
-  _toggleLike(quantity){
+  isLiked(){
+    return this._elementLike.classList.contains('element__like_state_active');
+  }
+
+  toggleLike(quantity){
     this._setLikesQuantity(quantity);
     this._elementLike.classList.toggle('element__like_state_active');
   }
+
 
   _activateBin(){
     if (this._data.owner._id === this._userId) {
